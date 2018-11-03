@@ -1,16 +1,25 @@
-import React, { Component } from 'react'
-import {AppBar, Toolbar, Typography} from '@material-ui/core'
+import React from 'react'
+import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core'
+import LoginButton from './LoginButton'
 
 //navbar component with links and login status
 
-const AppHeader = () => (
+const styles = {
+	flex: {
+		flex: 1
+	},
+}
+
+const AppHeader = ({ classes }) => (
 	<AppBar position='static'>
 		<Toolbar>
 			<Typography variant='title' color='inherit'>
 				My React App
 			</Typography>
+			<div className={classes.flex} />
+			<LoginButton />
 		</Toolbar>
 	</AppBar>
 	)
 
-export default AppHeader
+export default withStyles(styles)(AppHeader)
