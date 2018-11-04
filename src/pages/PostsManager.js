@@ -3,9 +3,9 @@ import {withAuth} from '@okta/okta-react'
 import {withRouter, Route, Redirect, Link} from 'react-router-dom'
 import {withStyles, Typography, Button, IconButton, Paper, List, ListItem, ListItemText, ListItemSecondaryAction} from '@material-ui/core'
 import {Delete as DeleteIcon, Add as AddIcon} from '@material-ui/icons'
-import moment from 'moment'
+import moment from 'moment' //user-friendly strings for time
 import {find, orderBy} from 'lodash'
-import {compose} from 'recompose'
+import {compose} from 'recompose' //wrap multiple HOCs
 import PostEditor from '../components/PostEditor'
 
 const styles = theme => ({
@@ -23,13 +23,13 @@ const styles = theme => ({
 	}
 })
 
-const API = process.env.REACT_APP_API || 'http://localhost:3001'
+const API = process.env.REACT_APP_API || 'http://localhost:3001' //option to run on another server. default to port 3001
 
 class PostsManager extends Component {
 	state = {
 		loading: true,
 		posts: []
-	}
+	} //show loading until data appears
 
 	componentDidMount() {
 		this.getPosts()
@@ -57,7 +57,7 @@ class PostsManager extends Component {
 		this.setState({
 			loading: false,
 			posts: await this.fetch('get', '/posts')
-		})
+		}) //remove the loading and fetch posts
 	}
 
 	savePost = async (post) => {
@@ -66,15 +66,21 @@ class PostsManager extends Component {
 		}
 		else {
 			await this.fetch('post', '/posts', post )
-		}
+		} //modify existing posts or create new ones
 
 		this.props.history.goBack()
 		this.getPosts() //retrieve updated posts
 	}
-}
+
+	async deletePost(post) {
+		if(window.confirm(`Are you sure you want to delete "${post.title}"`)) {
+			await this.fetch('delete', `/posts/${post.id}`)
+			this.getPosts() //retrieve updated posts
+		}
+	}
 
 renderPostEditor = ({match: {params: {id}}}) => {
-	if (this.state.loading) return null
+	if (this.state.loading) return null //no rendering during loading
 
 	const post = find(this.state.posts, {id: Number(id)})
 

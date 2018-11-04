@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
 import {Route} from 'react-router-dom'
-import {ImplicitCallback} from '@okta/okta-react'
+import {ImplicitCallback, SecureRoute} from '@okta/okta-react' //redirect to signin or home when logged out
 import {CssBaseline, withStyles} from '@material-ui/core'
 import AppHeader from './components/AppHeader'
 import Home from './pages/Home'
+import PostsManager from './pages/PostsManager'
 
 //replace css files with these default settings to normalize the app
 
@@ -22,6 +23,7 @@ const App = ({ classes}) => (
     <AppHeader />
     <main className={classes.main}>
       <Route exact path="/" component={Home} />
+      <SecureRoute exact path='/posts' component={PostsManager} />
       <Route path="/implicit/callback" component={ImplicitCallback} />
     </main>
   </Fragment>
