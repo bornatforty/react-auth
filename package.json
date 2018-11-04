@@ -12,17 +12,26 @@
     "dotenv": "^6.1.0",
     "epilogue": "^0.7.1",
     "express": "^4.16.4",
+    "final-form": "^4.10.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "nodemon": "^1.18.5",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-final-form": "^3.6.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.0",
+    "recompose": "^0.30.0",
     "sequelize": "^4.41.0",
     "sqlite": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all --parallel watch:server start:web",
+    "start:web": "react-scripts start",
+    "start:server": "node src/server",
+    "watch:server": "nodemon --watch src/server src/server",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
