@@ -7,7 +7,7 @@ class LoginButton extends Component {
 	state = {
 		authenticated: null, //initial state is logged out
 		user: null, //no initial user logged in
-		menuAnchorEl: null,
+		menuAnchorEl: null
 	}
 
 	componentDidUpdate() {
@@ -32,15 +32,19 @@ class LoginButton extends Component {
 	logout = () => {this.handleMenuClose()
 					this.props.auth.logout()}
 
-	handleMenuOpen = event => this.setState({menuAnchorEl: event.currentTarget})
-	handleMenuClose = () => this.setState({menuAnchorEl: null})
+	handleMenuOpen = event => this.setState({
+		menuAnchorEl: event.currentTarget})
+	handleMenuClose = () => this.setState({
+		menuAnchorEl: null})
 
 	render() {
 		const {authenticated, user, menuAnchorEl} = this.state
 			if(authenticated == null) return null
 			if(!authenticated)
 				return(
-					<Button color="inherit" onClick={this.login}>Login</Button>) //render the login button if not authenticated
+					<Button color="inherit" onClick={this.login}>
+					Login</Button>
+					) //render the login button if not authenticated
 			const menuPosition = {
 				vertical: 'top',
 				horizontal: 'right'

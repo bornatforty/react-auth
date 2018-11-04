@@ -15,7 +15,7 @@ const AppHeader = ({ classes }) => (
 	<AppBar position='static'>
 		<Toolbar>
 			<Typography variant='title' color='inherit'>
-				My React App
+				Postmaster General
 			</Typography>
 			<Button color='inherit' component={Link} to='/'>Home</Button>
 			<Button color='inherit' component={Link} to='/posts'>Posts Manager</Button>
