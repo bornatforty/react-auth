@@ -6,7 +6,7 @@ const Sequelize = require('sequelize') //mapper for sqlite
 const epilogue = require('epilogue') // create REST endpoints and controllers
 const OktaJwtVerifier = require('@okta/jwt-verifier')
 
-const OktaJwtVerifier = new OktaJwtVerifier({
+const oktaJwtVerifier = new OktaJwtVerifier({
 	clientId: process.env.REACT_APP_OKTA_CLIENT_ID,
 	issuer: `${process.env.REACT_APP_OKTA_ORG_URL}/oauth2/default`,
 })
@@ -21,7 +21,7 @@ app.use(async (req, res, next) => {
 			throw new Error('Authorization header is required')
 
 		const accessToken = req.headers.authorization.trim().split(' ')[1]
-		await OktaJwtVerifier.verifyAccessToken(accessToken)
+		await oktaJwtVerifier.verifyAccessToken(accessToken)
 		next()
 	}
 	catch (error) {

@@ -93,7 +93,6 @@ renderPostEditor = ({match: {params: {id}}}) => {
 
 render() {
 	const {classes} = this.props
-}
 
 return (
 	<Fragment>
@@ -138,4 +137,4 @@ return (
 	)
 }}
 
-export default compose(withAuth,withRouter,withStyles(styles),)(PostsManager)
+export default compose(withAuth,withRouter,withStyles(styles))(PostsManager)
