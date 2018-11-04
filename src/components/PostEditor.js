@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {withStyles, Card, CardContent, CardActions, Modal, Button, TextField} from '@material-ui/core'
 import {compose} from 'recompose'
 import {withRouter} from 'react-router-dom'
@@ -25,7 +25,7 @@ const styles = theme => ({
 
 const PostEditor = ({ classes, post, onSave, history }) => (
 	<Form initialValues={post} onSubmit={onSave}>
-		{({ handleSubmit}) => {
+		{({ handleSubmit}) => (
 			<Modal
 				className={classes.modal}
 				onClose={() => history.goBack()}
@@ -55,7 +55,7 @@ const PostEditor = ({ classes, post, onSave, history }) => (
 					</form>
 				</Card>
 			</Modal>
-		}}
+		)}
 	</Form>
 )
 export default compose(withRouter, withStyles(styles),)(PostEditor)
